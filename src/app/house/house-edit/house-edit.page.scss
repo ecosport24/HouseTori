@@ -1,0 +1,28 @@
+.image-container {
+  height: 250px;
+  width: 100%;
+
+  ion-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: brightness(90%);
+  }
+}
+
+ion-card {
+  position: relative;
+  margin-bottom: 20px;
+
+  .card-btn-top {
+    position: absolute;
+    top: 60%;
+    width: 100%;
+  }
+  .card-btn-bottom {
+    position: absolute;
+    top: 78%;
+    width: 100%;
+  }
+}

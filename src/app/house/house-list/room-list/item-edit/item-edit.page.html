@@ -1,0 +1,105 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{item.itm_name}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onAlertCtrlUpdate()" [disabled]="form.invalid">
+        <ion-icon name="checkmark" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-list>
+            <ion-card class="image-container">
+              <ion-img [src]="imageURL? imageURL: imageDefault"></ion-img>
+            </ion-card>
+            <div class="ion-text-center ion-padding-bottom">
+              <ion-button color="primary" (click)="takePhoto()"
+                ><ion-icon slot="start" name="camera"></ion-icon>
+                Camera</ion-button
+              >
+              <ion-button color="primary" (click)="getGallery()"
+                ><ion-icon slot="start" name="image"></ion-icon>
+                Gallery</ion-button
+              >
+            </div>
+            <ion-item>
+              <ion-label position="floating">Name <b>*</b></ion-label>
+              <ion-input type="text" formControlName="itm_name"></ion-input>
+            </ion-item>
+            <ion-row>
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="floating">Brand <i>(opt.)</i></ion-label>
+                  <ion-input
+                    type="text"
+                    formControlName="itm_brand"
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="floating">Shop <i>(opt.)</i></ion-label>
+                  <ion-input type="text" formControlName="itm_shop"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-item>
+              <ion-label position="floating">Category <b>*</b></ion-label>
+              <ionic-selectable
+                formControlName="itm_desc"
+                [canSearch]="true"
+                [items]="itemCategories"
+                itemValueField="cat_id"
+                itemTextField="cat_name"
+                [(ngModel)]="itm_cat"
+              ></ionic-selectable>
+            </ion-item>
+            <ion-row>
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="floating">Price <b>*</b></ion-label>
+                  <ion-input
+                    type="number"
+                    formControlName="itm_price"
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="floating">Quantity <b>*</b></ion-label>
+                  <ion-input
+                    type="number"
+                    formControlName="itm_qty"
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-item>
+              <ion-label position="floating"
+                >Warranty Date <i>(opt.)</i></ion-label
+              >
+              <ion-datetime
+                display-format="MMM DD YYYY"
+                picker-format="YY MMM DD"
+                min="2015-01-01"
+                max="2025-12-31"
+                formControlName="itm_warranty_date"
+              ></ion-datetime>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

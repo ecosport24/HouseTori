@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/profile"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Update Profile</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [disabled]="form.invalid" (click)="onAlertCtrlUpdate()">
+        <ion-icon name="create-sharp" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-card>
+      <ion-img [src]="userImage? userImage: imageURL"> </ion-img>
+    </ion-card>
+    <div class="ion-text-center ion-padding-bottom">
+      <ion-button color="primary" (click)="takePhoto()"
+        ><ion-icon slot="start" name="camera"></ion-icon> Camera</ion-button
+      >
+      <ion-button color="primary" (click)="getGallery()"
+        ><ion-icon slot="start" name="image"></ion-icon> Gallery</ion-button
+      >
+    </div>
+    <form [formGroup]="form">
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-list>
+              <ion-row>
+                <ion-col size="6">
+                  <ion-item lines="none">
+                    <ion-label position="floating"
+                      >First Name <b>*</b></ion-label
+                    >
+                    <ion-input
+                      type="text"
+                      formControlName="acc_first_name"
+                    ></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-item lines="none">
+                    <ion-label position="floating"
+                      >Last Name <b>*</b></ion-label
+                    >
+                    <ion-input
+                      type="text"
+                      formControlName="acc_last_name"
+                    ></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="12">
+                  <ion-item lines="none">
+                    <ion-label position="floating">Email <b>*</b></ion-label>
+                    <ion-input
+                      type="text"
+                      formControlName="acc_email"
+                    ></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-list>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>

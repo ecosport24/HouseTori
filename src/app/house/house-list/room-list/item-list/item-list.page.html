@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/room"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Room Information</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col class="ion-no-padding room-image">
+        <ion-card class="room-container">
+          <div class="image-container">
+            <ion-img
+              [src]="room.rm_img? room.rm_img: rmaddImgDefault"
+            ></ion-img>
+          </div>
+          <div class="card-header">{{room.rm_name}}</div>
+          <div class="card-subtitle">Estimated Content Value:</div>
+          <div class="card-title">₱ {{totalValue | currency:' ' }}</div>
+          <div class="card-btn">
+            <ion-button color="warning" (click)="onEditRoom()" size="small">
+              Edit Room
+            </ion-button>
+          </div>
+
+          <ion-button
+            class="ion-margin"
+            color="primary"
+            expand="block"
+            [routerLink]="['/', 'house', houseId, roomId, 'add']"
+            ><ion-icon name="add" slot="start"></ion-icon> Add Item</ion-button
+          >
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-padding-horizontal">
+      <ion-col>
+        <div *ngIf="noItems" class="ion-text-center">
+          <ion-text>No items found! Please create 1 first!</ion-text>
+        </div>
+        <ion-list>
+          <ion-item *ngIf="!noItems">
+            <ion-label>Search switch by item Name</ion-label>
+            <ion-toggle
+              slot="end"
+              (click)="switchSearchField() "
+              [(ngModel)]="isCategory"
+            ></ion-toggle>
+          </ion-item>
+          <ion-item *ngIf="!noItems" class="ion-margin-bottom">
+            <ion-label position="floating"
+              >Search Item {{isCategory ? "Name" : "Category"}}</ion-label
+            >
+            <ionic-selectable
+              [canSearch]="true"
+              [items]="isCategory ? items: itemCategories"
+              [itemValueField]="isCategory ? 'itm_id' : 'cat_id'"
+              [itemTextField]="isCategory ? 'itm_name' : 'cat_name'"
+              (onChange)="onChanged($event)"
+              [canClear]="true"
+            ></ionic-selectable>
+          </ion-item>
+          <ion-item-sliding *ngFor="let item of items; let i=index;">
+            <ion-item
+              detail
+              [routerLink]="['/','house', houseId, roomId, item.itm_id]"
+            >
+              <ion-thumbnail slot="start">
+                <ion-img
+                  [src]="item.itm_img? item.itm_img: itemImgDefault"
+                ></ion-img>
+              </ion-thumbnail>
+              <ion-label>
+                <h1>{{isCategory? item.itm_name: item.cat_name}}</h1>
+                <h2>{{isCategory? item.cat_name : item.itm_name}}</h2>
+              </ion-label>
+            </ion-item>
+            <ion-item-options slot="end">
+              <ion-item-option>
+                <ion-icon
+                  name="create"
+                  slot="icon-only"
+                  [routerLink]="['/','house', houseId, roomId, item.itm_id, 'edit']"
+                ></ion-icon>
+              </ion-item-option>
+              <ion-item-option color="secondary">
+                <ion-icon
+                  name="move"
+                  slot="icon-only"
+                  (click)="onMoveItemAlertDisplay(item.itm_id)"
+                ></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+          <div *ngIf="searchItems" class="ion-text-center">
+            <p>Search has no item found!</p>
+          </div>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

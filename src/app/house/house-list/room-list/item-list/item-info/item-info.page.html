@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/room/items"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Item Information</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <ion-card class="card-container">
+          <div class="image-container">
+            <ion-img [src]="item.itm_img? item.itm_img: imageDefault"></ion-img>
+            <div class="card-subtitle">{{item.itm_brand}}</div>
+            <div class="card-title">{{item.itm_name}}</div>
+            <div class="card-btn">
+              <ion-button (click)="onEditItem()">Edit</ion-button>
+            </div>
+          </div>
+
+          <ion-card-content>
+            <ion-row>
+              <ion-col>
+                <ion-label>Price</ion-label>
+                <p>{{item.itm_price | currency:"P ":true}}</p>
+              </ion-col>
+              <ion-col>
+                <ion-label>Quantity</ion-label>
+                <p>{{item.itm_qty}} qty.</p>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-padding-vertical">
+              <ion-col>
+                <ion-label>Category</ion-label>
+                <p>{{item.cat_name ? item.cat_name: "N/A"}}</p>
+              </ion-col>
+
+              <ion-col>
+                <ion-label>Store/Shop</ion-label>
+                <p>{{item.itm_shop? item.itm_shop : "N/A"}}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-label>Date Acquired</ion-label>
+                <p>{{item.itm_date_created | date: "MMM dd, yyyy"}}</p>
+              </ion-col>
+              <ion-col>
+                <ion-label>Date Warranty</ion-label>
+                <!-- <p>{{item.itm_warranty_date | date: "MMM dd, yyyy"}}</p> -->
+                <p>{{warrantyDate}}</p>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

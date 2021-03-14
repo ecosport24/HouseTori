@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>House Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <ion-card class="house-image">
+          <div class="image-container-house">
+            <ion-img [src]="house.hs_img? house.hs_img : imageURL"></ion-img>
+            <div class="card-header">{{house.hs_name}}</div>
+            <div class="card-title">Update House Photo</div>
+            <div class="card-subtitle">
+              <ion-icon name="arrow-down"></ion-icon>
+            </div>
+          </div>
+          <ion-button
+            class="ion-margin"
+            color="primary"
+            expand="block"
+            size="large"
+            (click)="onEditHome()"
+            ><ion-icon name="create-outline" slot="start"></ion-icon> Edit
+            House</ion-button
+          >
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-padding ion-justify-content-start">
+      <ion-col size="6" [routerLink]="['/', 'house', houseId, 'add']">
+        <ion-card>
+          <div class="add-container">
+            <ion-img [src]="imageRoom"></ion-img>
+          </div>
+        </ion-card>
+      </ion-col>
+      <ion-col
+        size="6"
+        *ngFor="let room of rooms; let i = index"
+        [routerLink]="['/', 'house', houseId, room.rm_id]"
+        style="--animation-order:{{i}}"
+      >
+        <div class="room-container">
+          <ion-card>
+            <div class="add-container">
+              <ion-img [src]="room.rm_img? room.rm_img: srcImage"></ion-img>
+            </div>
+            <div class="card-title">{{room.rm_name}}</div>
+          </ion-card>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

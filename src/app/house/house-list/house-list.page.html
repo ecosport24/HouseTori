@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>HOUSE LIST</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/search">
+        <ion-icon name="search" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-fab
+    vertical="bottom"
+    horizontal="end"
+    slot="fixed"
+    class="ion-margin-vertical"
+  >
+    <ion-fab-button color="primary" routerLink="/house/add">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-grid>
+    <div *ngIf="noItems" class="ion-text-center ion-padding-vertical">
+      <ion-text>No homes found! Please create 1 first!</ion-text>
+    </div>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item
+            *ngFor="let house of houses; let i=index"
+            lines="none"
+            [routerLink]="['/', 'house', house.hs_id]"
+            style="--animation-order:{{i}}"
+          >
+            <ion-card class="ion-no-padding ion-no-margin">
+              <div class="image-container">
+                <ion-img [src]="house.hs_img? house.hs_img: imageURL"></ion-img>
+              </div>
+              <div class="card-title">{{house.hs_name}}</div>
+            </ion-card>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

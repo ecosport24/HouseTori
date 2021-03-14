@@ -1,0 +1,101 @@
+<ion-content>
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col class="content-container">
+          <div class="logo-container">
+            <img src="./assets/images/logoo.png" class="image-display" />
+            <h3 class="logo-name">HouseTori</h3>
+          </div>
+
+          <ion-slides #slides [options]="slideOpts">
+            <ion-slide>
+              <!-- <h1>Slide 1</h1> -->
+              <div *ngIf="isLogin">
+                <input
+                  type="text"
+                  placeholder="Email"
+                  name="acc_email"
+                  ngModel
+                  required
+                  email
+                />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="acc_password"
+                  ngModel
+                  required
+                />
+              </div>
+            </ion-slide>
+            <ion-slide>
+              <!-- <h1>Slide 2</h1> -->
+              <div *ngIf="!isLogin">
+                <input
+                  type="text"
+                  placeholder="First Name"
+                  name="acc_first_name"
+                  ngModel
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  name="acc_last_name"
+                  ngModel
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="Email"
+                  name="acc_email"
+                  ngModel
+                  required
+                  email
+                />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="acc_password"
+                  ngModel
+                  required
+                />
+                <input
+                  type="password"
+                  placeholder="Confirm Password"
+                  name="confirm_password"
+                  ngModel
+                  required
+                />
+                <div>
+                  <p>
+                    By clicking Sign Up, you agree to our Terms and Conditions.
+                    You may receive SMS Notifications from us and can opt out
+                    any time.
+                  </p>
+                </div>
+              </div>
+            </ion-slide>
+            <ion-slide>
+              <h1>Slide 3</h1>
+            </ion-slide>
+          </ion-slides>
+
+          <div class="btn-container">
+            <ion-button color="tertiary" type="submit" [disabled]="f.invalid">
+              {{isLogin ? "Login" : "Sign Up"}}</ion-button
+            >
+            <ion-button color="light" fill="outline" (click)="onSwitch()"
+              >{{isLogin ? "Create new account" : "Back"}}</ion-button
+            >
+          </div>
+
+          <!-- <ion-button *ngIf="isLogin" fill="clear" color="light">
+            Forgot password?
+          </ion-button> -->
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

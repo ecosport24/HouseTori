@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Search Item</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label>Search switch by item Name</ion-label>
+            <ion-toggle
+              slot="end"
+              (click)="switchSearchField() "
+              [(ngModel)]="isCategory"
+            ></ion-toggle>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating"
+              >Search Item {{isCategory ? "Name" : "Category"}}</ion-label
+            >
+            <ionic-selectable
+              [canSearch]="true"
+              [items]="isCategory ? items: itemCategories"
+              [itemValueField]="isCategory ? 'itm_id' : 'cat_id'"
+              [itemTextField]="isCategory ? 'itm_name' : 'cat_name'"
+              (onChange)="onChanged($event)"
+              [canClear]="true"
+            ></ionic-selectable>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item
+            *ngFor="let item of items;let i = index"
+            [routerLink]="['/', 'search', item.itm_id]"
+            style="--animation-order:{{i}}"
+            lines="none"
+          >
+            <ion-thumbnail slot="start">
+              <ion-img
+                [src]="item.itm_img? item.itm_img:imageDefault"
+              ></ion-img>
+            </ion-thumbnail>
+            <ion-label>
+              <h1>{{isCategory? item.itm_name: item.cat_name}}</h1>
+              <h2>{{isCategory? item.cat_name : item.itm_name}}</h2>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

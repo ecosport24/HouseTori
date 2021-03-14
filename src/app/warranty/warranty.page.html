@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>List of Warranty Items</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="segmentVal">
+      <ion-segment-button value="valid">
+        <ion-label>Valid</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="expired">
+        <ion-label>Expired</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label>Search switch by item Name</ion-label>
+            <ion-toggle
+              slot="end"
+              (click)="switchSearchField() "
+              [(ngModel)]="isCategory"
+            ></ion-toggle>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating"
+              >Search Item {{isCategory ? "Name" : "Category"}}</ion-label
+            >
+            <ionic-selectable
+              [canSearch]="true"
+              [items]="isCategory ? listItems: itemCategories"
+              [itemValueField]="isCategory ? 'itm_id' : 'cat_id'"
+              [itemTextField]="isCategory ? 'itm_name' : 'cat_name'"
+              (onChange)="onChanged($event)"
+              [canClear]="true"
+            ></ionic-selectable>
+          </ion-item>
+
+          <ion-item
+            *ngFor="let item of listItems; let i = index"
+            [routerLink]="['/', 'warranty', item.itm_id]"
+            style="--animation-order:{{i}}"
+          >
+            <ion-thumbnail slot="start">
+              <ion-img
+                [src]="item.itm_img ? item.itm_img :imageDefault"
+              ></ion-img>
+            </ion-thumbnail>
+            <ion-label>
+              <h1>{{isCategory ? item.itm_name : item.cat_name}}</h1>
+              <h2>{{isCategory ? item.cat_name : item.itm_name}}</h2>
+              <p>{{item.itm_warranty_date | date: "MMMM dd, yyyy"}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <div *ngIf="noItems" class="ion-text-center">
+      <p>Search have found (0) item.</p>
+    </div>
+  </ion-grid>
+</ion-content>

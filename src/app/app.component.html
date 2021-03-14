@@ -1,0 +1,47 @@
+<ion-app>
+  <ion-menu contentId="main-content" type="overlay">
+    <ion-header>
+      <ion-toolbar>
+        <ion-thumbnail slot="start" class="ion-margin">
+          <ion-img [src]="imageIcon"></ion-img>
+        </ion-thumbnail>
+        <ion-title>HouseTori</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list class="ion-margin-top">
+        <ion-menu-toggle>
+          <ion-item lines="none" routerLink="/search">
+            <ion-icon name="search" slot="start"></ion-icon>
+            <ion-label>Search Item</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item lines="none" routerLink="/house">
+            <ion-icon name="home" slot="start"></ion-icon>
+            <ion-label>Home List</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item lines="none" routerLink="/warranty">
+            <ion-icon name="calendar-sharp" slot="start"></ion-icon>
+            <ion-label>Items Warranty List</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item lines="none" routerLink="/profile">
+            <ion-icon name="person-circle-sharp" slot="start"></ion-icon>
+            <ion-label>My Account</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item lines="none" (click)="Logout()">
+            <ion-icon name="power" slot="start"></ion-icon>
+            <ion-label>Logout</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+</ion-app>
