@@ -11,8 +11,6 @@ Build using
 - PHP for backend
 - Mysql for database
 
-Images of the App
-
 ---
 
 To see a video of what this application can do kindly check this link on youtube.
