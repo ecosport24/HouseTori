@@ -17,5 +17,6 @@ Images of the App
 
 ---
 
-#####To see a video of what this application can do kindly check this link on youtube.
+To see a video of what this application can do kindly check this link on youtube.
+
 [Instructional video on how to use HouseTori](https://www.youtube.com/watch?v=3gkpDavjKOE&ab_channel=RyanAndreiTemporaza)
