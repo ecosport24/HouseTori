@@ -4,8 +4,18 @@
 
 ---
 
+Build using
+
+- Ionic 4
+
+* Angular
+
+- PHP for backend
+- Mysql for database
+
 Images of the App
 
 ---
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/assets/housetori-images/1.PNG)
+#####To see a video of what this application can do kindly check this link on youtube.
+[Instructional video on how to use HouseTori](https://www.youtube.com/watch?v=3gkpDavjKOE&ab_channel=RyanAndreiTemporaza)
