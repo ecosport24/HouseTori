@@ -1,5 +1,5 @@
 # HouseTori
 
----
-
 ### Personal Home Inventory
+
+---
