@@ -1,6 +1,6 @@
 # HouseTori
 
-### Personal Home Inventory
+### Personal Household Inventory
 
 ---
 
